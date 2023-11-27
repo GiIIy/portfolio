@@ -1,4 +1,4 @@
-import React , {useRef}from 'react';
+import React , {useRef} from 'react';
 import './App.css';
 import me from './portrait.jpg';
 import github from './github.png';
@@ -71,7 +71,7 @@ function App() {
       </div>
 
       <div className="Nav" >
-        <a className='nameText' href='http://localhost:3000/' style={{textDecoration:"none"}}>Gill</a>
+        <a className='nameText' href='http://chilledgems.com' style={{textDecoration:"none"}}>Gill</a>
 
         <div className="NavContent">
         <span onClick={() => scrollToSection(homeRef)} style={{ cursor: 'pointer', marginRight: "20px", color: "#2d2e32", fontWeight: "600", fontFamily: "sans-serif", fontSize: "18px" }}>Home</span>
@@ -107,8 +107,6 @@ function App() {
           </div>
         </div>    
       </div>
-
-  
 
 
       <div ref={projectsRef} id="projects" className="projects-section">
