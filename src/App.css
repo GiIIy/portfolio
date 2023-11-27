@@ -305,8 +305,6 @@
 }
 
 
-
-
 .contact-links{
   display: flex;
   flex-direction: row;
@@ -347,4 +345,55 @@
   padding: 20px; /* Add padding to create space between the content and the border */
   border-radius: 10px; /* Add border-radius for rounded corners */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+@media (max-width: 600px) {
+  .content {
+    flex-direction: column; /* Switch to column layout on small screens */
+    text-align: center; /* Center text on small screens */
+  }
+
+  .text {
+    margin-right: 0; /* Remove right margin for text on small screens */
+    margin-bottom: 20px; /* Add some space between text and image on small screens */
+  }
+
+  .NavContent {
+  
+    margin-right: 0;
+  }
+
+  .smallText {
+    margin-top: 10px; /* Add some space between text and social icons on small screens */
+  }
+
+  .sidePhoto {
+    margin-top: 20px; /* Add some space between image and text on small screens */
+  }
+
+  .projects-section,
+  .contact-section {
+    margin-left: 10px; /* Adjust left margin for sections on small screens */
+    margin-right: 10px; /* Adjust right margin for sections on small screens */
+  }
+
+  .project {
+    margin-left: 0; /* Remove left margin for projects on small screens */
+    margin-right: 0; /* Remove right margin for projects on small screens */
+  }
+
+  .contact-links {
+    flex-direction: column; /* Adjust contact links to column layout on small screens */
+    align-items: center;
+    margin-top: 20px; /* Add some space between contact links on small screens */
+  }
+
+  .contact-info-box {
+    margin-right: 0; /* Remove right margin for contact info boxes on small screens */
+    margin-bottom: 20px; /* Add some space between contact info boxes on small screens */
+  }
+
+  .mailLink {
+    font-size: 1em; /* Set the font size for email link */
+  }
 }
