@@ -1,38 +1,350 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Root styling for animation */
+:root {
+  --element-width: 32px;
+  --element-height: 32px;
+  --x-speed: 26s;
+  --y-speed: 14s;
+  --transition-speed: 2.2s;
+  overflow-x:hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.container {
+  position: relative; /* Establish stacking context */
+}
+
+.el,
+.x,
+.y {
+  width: var(--element-width);
+  height: var(--element-height);
+  position: absolute;
+}
+
+.smallStack {
+  position: absolute;
+  z-index: 1; /* Set a lower z-index for the animated elements */
+}
+
+.el-wrap.x {
+  animation: x var(--x-speed) linear infinite alternate;
+}
+
+@keyframes x {
+  100% {
+    transform: translateX(calc(100vw - var(--element-width)));
   }
 }
 
-.App-header {
-  background-color: #282c34;
+.el.y {
+  animation: y var(--y-speed) linear infinite alternate;
+}
+
+@keyframes y {
+  100% {
+    transform: translateY(calc(100vh - var(--element-height)));
+  }
+}
+
+.Nav {
+  z-index: 1000; /* Set a higher z-index for the navigation bar */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 68px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.NavContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+  margin-right: 20px;
+}
+
+.nameText {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #2d2e32;
+  margin-left: 25px;
+  font-family: sans-serif;
+}
+
+/* Additional styling for elements with animation */
+.el-wrap.no-animation,
+.el.no-animation {
+  animation: none;
+}
+
+/* Styling for animated elements */
+.el,
+.x,
+.y {
+  width: var(--element-width);
+  height: var(--element-height);
+  position: absolute;
+}
+
+/* Keyframes for x-axis animation */
+@keyframes x {
+  100% {
+    transform: translateX(calc(100vw - var(--element-width)));
+  }
+}
+
+/* Keyframes for y-axis animation */
+@keyframes y {
+  100% {
+    transform: translateY(calc(100vh - var(--element-height)));
+  }
+}
+
+/* Additional styling for elements with no animation */
+.no-animation {
+  animation: none;
+}
+
+.App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(10px + 3vmin);
+  margin-left: auto;
+  background-color: #f9f9f9;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+  display: flex;
+  flex-direction: column; /* Adjust to column layout on small screens */
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Add relative positioning for z-index */
+  z-index: 2; /* Set a higher z-index for the content */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.text {
+  margin-bottom: 10px; /* Add some space between text and image */
+  text-align: center;
+}
+
+.sidePhoto {
+  border-radius: 50%; /* Make the image circular */
+  border: 3px solid #000000; /* Add a border around the image */
+  overflow: hidden; /* Ensure the border doesn't get cut off */
+  animation: photoBorderAnimation 10s ease-in-out infinite; /* Add a smooth animation effect */
+}
+
+.sidePhoto img {
+  width: 100%; /* Ensure the image takes up the full circular container */
+  height: auto;
+  vertical-align: middle; /* Align the image vertically in its container */
+}
+
+@keyframes photoBorderAnimation {
+  0% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
   }
+
+  50% {
+    border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+  }
+
   to {
-    transform: rotate(360deg);
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
   }
+}
+
+/* Media Query for Small Screens */
+@media (min-width: 900px) {
+  .content {
+    flex-direction: row; /* Switch back to row layout on larger screens */
+  }
+
+  .text {
+    margin-right: 150px; /* Adjust margin for text on larger screens */
+    margin-bottom: 0; /* Reset margin-bottom for text on larger screens */
+    text-align: left; /* Adjust text alignment for larger screens */
+  }
+
+  
+}
+
+.smallText {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 10px;
+}
+
+.individualLogo {
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+  filter: brightness(0%); /* Initially set the logo to black by reducing brightness to 0% */
+  transition: filter 0.3s ease; /* Add a smooth transition effect */
+}
+
+.individualLogo:hover {
+  filter: brightness(100%); /* Set brightness to 100% on hover to reveal the original colors, making it blue */
+}
+
+.smallStack {
+  position: absolute;
+  z-index: 1; /* Set a lower z-index for the animated elements */
+}
+
+.projects-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* Add relative positioning for z-index */
+  z-index: 2; /* Set a higher z-index for the content */
+  margin-left: 30px;
+  margin-top: 30px;
+
+}
+
+.projects{
+  display: flex;
+  flex-wrap: wrap; /* Allow projects to wrap to the next line on smaller screens */
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.project{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-right: 30px;
+  margin-left: 30px;
+  border: 1px solid #ccc; /* Add a border around the project */
+  padding: 20px; /* Add padding to create space between the content and the border */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  margin-bottom: 60px;
+}
+
+.project-image{
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  overflow:hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.project-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+
+.viewLinks{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.viewLinks a {
+  white-space: nowrap;
+  margin-right: 10px;
+  display: inline-block !important;
+  text-decoration: none;
+  color: #2d2e32;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+  border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.contact-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* Add relative positioning for z-index */
+  z-index: 2; /* Set a higher z-index for the content */
+  background-color: #f9f9f9;
+}
+
+
+
+
+.contact-links{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.contact-links p{
+  margin-right: 10px;
+  display: inline-block !important;
+  text-decoration: none;
+  color: #2d2e32;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+
+.mailLink{
+  margin-right: 10px;
+  display: inline-block !important;
+  text-decoration: none;
+  color: #2d2e32;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.contact-info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 50px;
+  border: 1px solid #ccc; /* Add a border around the project */
+  padding: 20px; /* Add padding to create space between the content and the border */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
